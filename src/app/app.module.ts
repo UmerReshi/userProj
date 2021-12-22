@@ -6,6 +6,7 @@ import { UserdetailComponent } from './userdetail/userdetail.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { UsersService } from './users.service';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { UsersService } from './users.service';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule
   ],
   providers: [
     UsersService

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UsersService } from '../users.service';
-import { urlUser } from '../urlUser';
+import { User } from '../User';
+import { Location } from '@angular/common';
+
 
 @Component({
   selector: 'app-userdetail',
@@ -9,14 +11,14 @@ import { urlUser } from '../urlUser';
   styleUrls: ['./userdetail.component.css']
 })
 export class UserdetailComponent implements OnInit {
-  user: any;
-
+  user: User | undefined;
   constructor(
     private route: ActivatedRoute,
-    private usersService: UsersService
+    private usersService: UsersService,
+    private location: Location
   ) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.getUser();
   }
 
@@ -26,5 +28,16 @@ export class UserdetailComponent implements OnInit {
       .subscribe(user => this.user = user);
     console.log('heyyyyyyyy : ', userId);
 
+  }
+  goBack() {
+    this.location.back();
+  }
+  save() {
+    console.log("save: ", this.user)
+    if (this.user) {
+      this.usersService.updateUser(this.user)
+        .subscribe(() => this.goBack());
+
+    }
   }
 }

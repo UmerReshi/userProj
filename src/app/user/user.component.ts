@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { urlUser } from '../urlUser';
+import { User } from '../User';
 import { UsersService } from '../users.service';
 
 @Component({
@@ -8,9 +8,7 @@ import { UsersService } from '../users.service';
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
-
-  urlUsers: urlUser[] = [];
-
+  Users: User[] = [];
 
   constructor(private usersService: UsersService) { }
 
@@ -24,13 +22,30 @@ export class UserComponent implements OnInit {
   // }
 
   ngOnInit() {
-    this.usersService.getUsers().subscribe((urlUsers: any) => {
-      this.urlUsers = urlUsers;
+    this.getAllUsers();
+  }
+
+  getAllUsers() {
+    this.usersService.getUsers().subscribe((users: User[]) => {
+      this.Users = users;
     });
   }
 
-  clickFunction(urlUser: any) {
-    console.log('clickFunction', urlUser);
+  clickFunction(User: User) {
+    console.log('clickFunction', User);
+  }
+
+  delete(User: User) {
+    this.usersService.deleteUser(User.id).subscribe(res => {
+      this.getAllUsers();
+    });
+  }
+
+  add(name: string) {
+    console.log("name works", name, { name }, { name } as User)
+    this.usersService.addUser({ name } as User).subscribe(() => {
+      this.getAllUsers();
+    });
   }
 }
 

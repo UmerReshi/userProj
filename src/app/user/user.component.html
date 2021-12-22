@@ -1,9 +1,22 @@
-<h2>TOP USER NAMES</h2>
-<a routerLink="/lazy">LAZY LOAD COMPONENT</a>
-<!-- <app-userdetail></app-userdetail> -->
-
-<div class="user-menu">
-    <a routerLink="/detail/{{urlUser.id}}" *ngFor="let urlUser of urlUsers">
-        <h2>{{urlUser.name}} </h2>
-    </a>
+<div>
+  <h2>TOP USER NAMES</h2>
+  <a routerLink="/lazy">LAZY LOAD COMPONENT</a>
 </div>
+
+<P></P>
+
+<div>
+  <label> User name: </label>
+  <input #userName />
+
+  <button (click)="add(userName.value); userName.value = ''">Add user</button>
+</div>
+
+<ul>
+  <li *ngFor="let User of Users">
+    <a routerLink="/detail/{{ User.id }}">
+      <span>{{ User.name }}</span>
+    </a>
+    <button (click)="delete(User)">x</button>
+  </li>
+</ul>
