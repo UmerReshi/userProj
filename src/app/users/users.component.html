@@ -1,5 +1,38 @@
 <div>
-  <h2>TOP USER NAMES</h2>
+ <li>
+    <a
+      (click)="changeDisplayMode(displayModeEnum.Card)"
+      [class.active]="displayMode !== displayModeEnum.Card"
+    > Card View
+    </a>
+  </li>
+
+  <li>
+    <a
+      (click)="changeDisplayMode(displayModeEnum.Grid)"
+      [class.active]="displayMode !== displayModeEnum.Grid"
+    >List View
+    </a>
+  </li>
+ 
+  <li>
+    <a routerLink="/edit">New Customer
+    </a>
+  </li>
+</div>
+
+
+<app-users-card
+  [Users]="Users"
+  [hidden]="displayMode !== displayModeEnum.Card"
+></app-users-card>
+
+<app-users-grid
+  [Users]="Users"
+  [hidden]="displayMode !== displayModeEnum.Grid"
+></app-users-grid>
+
+<div>
   <a routerLink="/lazy">LAZY LOAD COMPONENT</a>
 </div>
 

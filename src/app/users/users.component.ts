@@ -9,7 +9,8 @@ import { UsersService } from '../users.service';
 })
 export class UsersComponent implements OnInit {
   Users: User[] = [];
-
+  displayMode: DisplayModeEnum | undefined;
+  displayModeEnum = DisplayModeEnum;
   constructor(private usersService: UsersService) { }
 
   // ngOnInit(): void {
@@ -22,8 +23,12 @@ export class UsersComponent implements OnInit {
   // }
 
   ngOnInit() {
+    this.displayMode = DisplayModeEnum.Card;
     this.getAllUsers();
   }
+  changeDisplayMode(mode: DisplayModeEnum) {
+    this.displayMode = mode;
+}
 
   getAllUsers() {
     this.usersService.getUsers().subscribe((users: User[]) => {
@@ -49,6 +54,11 @@ export class UsersComponent implements OnInit {
   }
 }
 
+enum DisplayModeEnum {
+  Card = 0,
+  Grid = 1,
+  Map = 2
+}
 
 // {
 //   this.usersService.getUsers().subscribe((res) => console.log(res));

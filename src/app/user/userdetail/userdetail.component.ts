@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { UsersService } from '../users.service';
-import { User } from '../User';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
+import { User } from '../../User';
 import { Location } from '@angular/common';
+import { UsersService } from '../../users.service';
 
 
 @Component({
@@ -19,16 +19,18 @@ export class UserdetailComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getUser();
+    this.route.parent?.params.subscribe((params: Params) => {
+      const id = +params['id'];
+      if (id) {
+        this.usersService.getUser(id)
+          .subscribe((user: User) => {
+            this.user = user;
+          });
+      }
+    });
   }
 
-  getUser() {
-    const userId = this.route.snapshot.params["id"];
-    this.usersService.getUser(userId)
-      .subscribe(user => this.user = user);
-    console.log('heyyyyyyyy : ', userId);
-
-  }
+      
   goBack() {
     this.location.back();
   }

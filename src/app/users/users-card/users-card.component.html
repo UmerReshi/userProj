@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="row card-container">
+        <div class="col-sm-6 col-md-4 col-lg-3" *ngFor="let User of Users">
+            <div class="card">
+                <div class="card-header">
+                    <a routerLink="/user/{{ User.id }}/details" class="white">
+                        {{User.name}}
+            
+                        
+                    </a>
+                    <a routerLink="/edit">
+                        <i title="Edit"  
+                           class="pull-right glyphicon glyphicon-edit edit-icon white"></i>
+                    </a>
+                </div>
+                <div class="card-body">
+                    <div class="clearfix">
+                        <div class="pull-left card-body-left">
+                        
+                        </div>
+                        <div class="pull-left card-body-right">
+                            <div class="card-body-content">{{User.city}}</div>
+                            <a [routerLink]="['/orders']">View Orders</a>
+                    
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
