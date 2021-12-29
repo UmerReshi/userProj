@@ -1,11 +1,21 @@
-<p>useredit works!</p>
 <div *ngIf="user">
     <h2>{{ user.name }} Details</h2>
     <h3>id: {{ user.id }}</h3>
+    <h3>age: {{ user.age }}</h3>
+    <h3>city: {{ user.city }}</h3>
   
     <div>
       <label>User name: </label>
       <input [(ngModel)]="user.name" />
+    </div>
+
+    <div>
+      <label>Age: </label>
+      <input [(ngModel)]="user.age" />
+    </div>
+    <div>
+      <label>city: </label>
+      <input [(ngModel)]="user.city" />
     </div>
   
     <button (click)="goBack()">go back</button>

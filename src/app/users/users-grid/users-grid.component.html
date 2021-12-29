@@ -21,7 +21,7 @@
           <tbody>
             <tr *ngFor="let User of Users">
               <td>
-                <a routerLink="/detail/{{ User.id }}">{{ User.name }}</a>
+                <a routerLink="/user/{{ User.id }}/details">{{ User.name }}</a>
               </td>
               <td>{{ User.city }}</td>
               <td><a [routerLink]="['/orders']">View Orders</a></td>

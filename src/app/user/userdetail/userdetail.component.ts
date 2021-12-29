@@ -34,12 +34,12 @@ export class UserdetailComponent implements OnInit {
   goBack() {
     this.location.back();
   }
-  save() {
-    console.log("save: ", this.user)
-    if (this.user) {
-      this.usersService.updateUser(this.user)
-        .subscribe(() => this.goBack());
+  // save() {
+  //   console.log("save: ", this.user)
+  //   if (this.user) {
+  //     this.usersService.updateUser(this.user)
+  //       .subscribe(() => this.goBack());
 
-    }
-  }
+  //   }
+  // }
 }
